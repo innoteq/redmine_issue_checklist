@@ -149,6 +149,12 @@ function checklist_item_done(event, elem, url, id) {
       dataType: 'script',
       data: {
         'last_journal_id': Redmine.last_journal_id
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        // HACK We can't take journal here. Thus only reload ;(
+        if(xhr.status == 404) {
+          location.reload();
+        }
       }
     }
   );
