@@ -4,14 +4,15 @@ $('#ajax-modal').html('<%= escape_javascript(render :partial => 'issue_checklist
 showModal('ajax-modal', '600px');
 
 <% else %>
-  var checkbox = $("#checklist_item_<%= @checklist_item.id %>");
+  var checkitem = $("#checklist_item_<%= @checklist_item.id %>");
+  var checkbox = $("#checkbox_checklist_item_<%= @checklist_item.id %>");
 
   <% if @checklist_item.is_done %>
-    checkbox.addClass('is-done-checklist-item');
-    checkbox.children().prop('checked', true);
+    checkitem.addClass('is-done-checklist-item');
+    checkbox.prop('checked', true);
   <% else %>
-    checkbox.removeClass('is-done-checklist-item');
-    checkbox.children().prop('checked', false);
+    checkitem.removeClass('is-done-checklist-item');
+    checkbox.prop('checked', false);
   <% end %>
 
   Redmine.last_journal_id = <%= @checklist_item.issue.last_journal_id %>;
