@@ -2,7 +2,7 @@
   <%= check_box_tag 'checkbox_checklist_item_' + checklist_item.id.to_s, 1, checklist_item.is_done,
       disabled: !User.current.allowed_to?(:done_checklists, checklist_item.issue.project),
       autocomplete: 'off',
-      onclick:  "checklist_item_done(this,'#{url_for({ controller: 'issue_checklists', action: 'done', checklist_item_id: checklist_item.id, is_done: (checklist_item.is_done == false) })}','#{checklist_item.id}')"
+      onclick: "checklist_item_done(event, this, '#{url_for({ controller: 'issue_checklists', action: 'done', checklist_item_id: checklist_item.id, is_done: (checklist_item.is_done == false) })}','#{checklist_item.id}');"
   %>
   <%= textilizable(checklist_item, :subject).gsub(/<\/?(p|h\d+|li|ul)>/, '').strip.html_safe %>
 </li>

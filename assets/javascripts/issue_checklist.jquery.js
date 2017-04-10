@@ -142,7 +142,7 @@ function createIssueChecklist(checkList) {
   issueChecklist.addChecklist(checkList);
 }
 
-function checklist_item_done(elem, url, id) {
+function checklist_item_done(event, elem, url, id) {
   $.ajax(
     {
       url: url,
