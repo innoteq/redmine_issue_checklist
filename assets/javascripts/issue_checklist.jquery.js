@@ -142,14 +142,16 @@ function createIssueChecklist(checkList) {
   issueChecklist.addChecklist(checkList);
 }
 
-function checklist_item_done(elem,url,id){
-  $.ajax({url: url,
-          dataType: 'script',
-          data: 'checklist_item_' + id});
-  var checkbox = $('#checklist_item_checkbox_'+id);
-  if (checkbox.is(':checked')) {
-    checkbox.removeAttr('checked');
-  } else {
-    checkbox.attr('checked', true);
-  }
+function checklist_item_done(elem, url, id) {
+  $.ajax(
+    {
+      url: url,
+      dataType: 'script',
+      data: {
+        'last_journal_id': Redmine.last_journal_id
+      }
+    }
+  );
+  event.preventDefault();
+  return false;
 }

@@ -1,1 +1,19 @@
-$("#checklist_item_<%= @checklist_item.id %>").toggleClass('is-done-checklist-item')
+<% if @conflict_journals.present? %>
+
+$('#ajax-modal').html('<%= escape_javascript(render :partial => 'issue_checklists/conflict_modal', object: @checklist_item) %>');
+showModal('ajax-modal', '600px');
+
+<% else %>
+  var checkbox = $("#checklist_item_<%= @checklist_item.id %>");
+
+  <% if @checklist_item.is_done %>
+    checkbox.addClass('is-done-checklist-item');
+    checkbox.children().prop('checked', true);
+  <% else %>
+    checkbox.removeClass('is-done-checklist-item');
+    checkbox.children().prop('checked', false);
+  <% end %>
+
+  Redmine.last_journal_id = <%= @checklist_item.issue.last_journal_id %>;
+
+<% end %>

@@ -1,0 +1,22 @@
+<h3 class="title"><%= l(:label_conflict_checkitem) %></h3>
+
+<div class="box">
+  <h3><%= l(:text_conflict_message_checkitem) %></h3>
+
+  <% @conflict_journals.sort_by(&:id).each do |journal| %>
+    <h4><%= authoring journal.created_on, journal.user, :label => :label_updated_time_by %></h4>
+    <% if journal.details.any? %>
+      <ul class="details">
+        <% details_to_strings(journal.details).each do |string| %>
+         <li><%= string %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+
+</div>
+
+<p class="buttons">
+  <%= submit_tag l(:button_reload_page), :name => nil, :onclick => "location.reload();", :type => 'button' %>
+  <%= submit_tag l(:button_cancel), :name => nil, :onclick => "hideModal(this);", :type => 'button' %>
+</p>

@@ -4,8 +4,12 @@
   <div id="issue_checklist">
     <p><strong><%= l(:label_issue_checklist_plural) %></strong></p>
 
+    <script>
+      Redmine.last_journal_id = <%= @issue.last_journal_id %>;
+    </script>
+
     <ul id="issue_checklist_items">
-      <% @issue.checklist.each do |checklist_item| %>
+      <% @issue.checklist.sort_by(&:id).each do |checklist_item| %>
         <%= render partial: 'issue_checklists/checklist_item', object: checklist_item %>
       <% end %>
     </ul>

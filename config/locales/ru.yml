@@ -7,4 +7,6 @@ ru:
   permission_view_checklists: Просматривать чеклисты
   permission_done_checklists: Выполнять чеклисты
   permission_edit_checklists: Редактировать чеклисты
-  
+  label_conflict_checkitem: Обнаружены изменение задачи другим пользователем
+  text_conflict_message_checkitem: Список изменений
+  button_reload_page: Перезагрузить страницу

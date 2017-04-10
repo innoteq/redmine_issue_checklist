@@ -8,7 +8,11 @@ class IssueChecklistsController < ApplicationController
     old_checklist_item      = @checklist_item.dup
     @checklist_item.is_done = !@checklist_item.is_done
 
-    if @checklist_item.save
+    if params[:last_journal_id]
+      @conflict_journals = @checklist_item.issue.journals_after(params[:last_journal_id]).to_a
+    end
+
+    if !@conflict_journals.present? && @checklist_item.save
       if RedmineIssueChecklist.settings[:save_log] && old_checklist_item.info != @checklist_item.info
         journal = Journal.new(journalized: @checklist_item.issue, user: User.current)
         journal.details << JournalDetail.new(
